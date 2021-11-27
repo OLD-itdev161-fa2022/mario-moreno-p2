@@ -56,6 +56,7 @@ app.get("/product/:id", async (req, res) => {
     res.json(product);
 });
 
+//delete by id
 app.delete("/product/:id", async (req, res) => {
     const id = req.params.id;
     const product = await Product.findById(id);
@@ -66,7 +67,23 @@ app.delete("/product/:id", async (req, res) => {
 
     await product.remove();
     res.json({msg: "Product removed"});
+});
 
+app.put("/edit-product/:id", async (req, res) => {
+
+    const {name, description, price} = req.body;
+    const product = await Product.findById(req.params.id);
+
+    if(!product){
+        return res.status(404).json({msg: "There are no products"});
+    }
+
+    product.name = name || product.name;
+    product.description = description || product.description;
+    product.price = price || product.price;
+
+    await product.save();
+    res.json(product);
 });
 
 
