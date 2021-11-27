@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Menu() {
+function Product() {
     return (
         <div>
-        <h1> this is menu</h1>
+            <h1>Product ID</h1>
         </div>
     )
 }
 
-export default Menu
+export default Product

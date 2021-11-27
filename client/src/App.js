@@ -1,15 +1,20 @@
-import './App.css';
-import Home from './components/Home';
+import React from "react";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Menu from './components/Menu';
+import Product from "./components/Product";
+import NewProduct from "./components/NewProduct";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
-    <div className="App">
-      <h1>React</h1>
-    
-    <Home/>
-    <Menu/>
-    </div>
+    <Router>
+      <Navigation/>
+      <Switch>
+        <Route exact path = "/" component = {Menu} />
+        <Route exact path = "/create-product" component = {NewProduct} />        
+        <Route exact path = "/product/:id" component = {Product} />
+      </Switch>
+    </Router>
   );
 }
 
