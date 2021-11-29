@@ -1,9 +1,16 @@
 import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import Product from "./models/Product.js";
 
 const app = express();
 app.use(express.json({extended: false}));
+
+app.use(
+    cors({
+        origin: "http://localhost:3000"
+    })
+);
 
 
 const db = "mongodb+srv://morenm14:itdev-161@cluster0.ppfld.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
@@ -85,7 +92,6 @@ app.put("/edit-product/:id", async (req, res) => {
     await product.save();
     res.json(product);
 });
-
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`express server running on port ${PORT}`));
