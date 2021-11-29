@@ -1,15 +1,16 @@
 import React from 'react'
 
 function Product (props) {
-    const { name, description, price} = props;
+    const { product } = props;
     
     return (
-        <div className = "card-body mx-3">
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <p>{price}</p>
+        
+            <div className = "card-single">
+                    <h3>{product.name}</h3>
+                    <p>{product.description}</p>
+                    <p>{product.price}</p>
             </div>
-            
+    
     )
 }
 

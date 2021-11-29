@@ -12,7 +12,7 @@ function Navigation() {
             <Nav className = "ms-auto me-3">
                 <Nav.Link as ={NavLink} to ="/">Menu</Nav.Link>
                 { user && <Nav.Link as ={NavLink} to ="/create-product">New Product</Nav.Link>}
-                <Nav.Link as ={NavLink} to ="/product">Product</Nav.Link>
+                
             </Nav>
             </Navbar>
         </header>
