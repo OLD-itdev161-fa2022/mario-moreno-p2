@@ -1,11 +1,18 @@
 import React from 'react'
 
-function Product() {
+function Product (props) {
+    const { name, description, price} = props;
+    
     return (
-        <div>
-            <h1>Product ID</h1>
-        </div>
+        <div className = "card-body mx-3">
+                <h3>{name}</h3>
+                <p>{description}</p>
+                <p>{price}</p>
+            </div>
+            
     )
 }
 
-export default Product
+export default Product;
+
+
