@@ -21,6 +21,10 @@ function EditProduct({onUpdatedProduct, product}) {
             [name]: value
         });
     }
+    
+    function cancel(){
+        history.push("/");
+    }
 
     const update = async () => {
         
@@ -67,7 +71,9 @@ function EditProduct({onUpdatedProduct, product}) {
                     <label className="form-label">Price</label>
                     <input name = "price" value ={price} type="text" className="form-control" onChange = {e => onChange(e)}/>
                 </div>
-                <button className="btn btn-primary mb-3" onClick = {() => update()}>Submit</button>
+                <button className="btn btn-secondary me-3" onClick = {() => cancel()}>Cancel</button>
+                <button className="btn btn-primary mr-3" onClick = {() => update()}>Save</button>
+                
                 
         </div>
     )
