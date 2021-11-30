@@ -1,4 +1,5 @@
 import express from "express";
+import {check, validationResult} from "express-validator";
 import cors from "cors";
 import mongoose from "mongoose";
 import Product from "./models/Product.js";
@@ -41,16 +42,34 @@ app.get("/", async (req, res) => {
 });
 
 //create new product
-app.post("/create-product", async (req, res) => {
-    const {name, description, price} = req.body;
-    const product = new Product({
-        name: name,
-        description: description,
-        price: price
-    });
+app.post("/create-product", 
+[
+    check("name", "Please enter a product name").not().isEmpty(),
+    check("description", "Please enter product description").not().isEmpty(),
+    check("price", "Please enter product price").isNumeric(),
+],
+async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).json({errors: errors.array()});
+    }else{
+        const {name, description, price} = req.body;
+        try {
+            
+            const product = new Product({
+            name: name,
+            description: description,
+            price: price
+            });
 
-    await product.save();
-    res.send(product);
+            await product.save();
+            res.json(product);
+            
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Server error");
+        }
+    }
 });
 
 //get product by id
