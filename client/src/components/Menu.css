@@ -3,13 +3,13 @@ body{
     background-color: whitesmoke;
 }
 .card:hover{
-    background-color: gainsboro;
+    background-color: rgb(245, 248, 227);
 }
 
 .card-single{
     margin: 1rem;
     padding: 1.8rem;
-    background-color: white;
+    background-color: rgb(245, 248, 227);
     border-radius: 10px;
     border: 1px solid rgb(223, 222, 222);
 }

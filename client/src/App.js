@@ -16,13 +16,16 @@ function App() {
     .then(res => setProducts(res.data))
     .catch(error => console.log(error));
 
-  },[]);
+  });
 
   function viewProduct (product){
   console.log(`view ${product.name}`);
   setProductClicked(product);
-  
-  
+}
+
+function onCreatedProduct(product){
+  const newProducts = [...products, product];
+  setProducts(newProducts);
 }
 
 
@@ -31,7 +34,7 @@ function App() {
       <Navigation/>
       <Switch>
         <Route exact path = "/" render = {() => <Menu products ={products} clickProduct= {viewProduct}/>} />
-        <Route  path = "/create-product" component = {NewProduct} />        
+        <Route  path = "/create-product" render = {() => <NewProduct onCreatedProduct = {onCreatedProduct}/>} />        
         <Route  path = "/product/:id" render = {() => <Product product={productClicked}/>} />
       </Switch>
     </Router>
