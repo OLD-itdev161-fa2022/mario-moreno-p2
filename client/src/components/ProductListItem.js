@@ -3,7 +3,9 @@ import { useHistory } from "react-router";
 import slugify from "slugify";
 
 function ProductListItem (props) {
-    const {product, clickProduct} = props;
+    const user = true;
+
+    const {product, clickProduct, editProduct} = props;
     const history = useHistory();
 
     const handleClick = (product) => {
@@ -12,6 +14,11 @@ function ProductListItem (props) {
         clickProduct(product);
         history.push(`/product/${slug}`);
     };
+
+    const handleEdit = (product) =>{
+        editProduct(product);
+        history.push(`/edit-product/${product._id}`);
+    }
     
     return(
         <div>
@@ -20,6 +27,10 @@ function ProductListItem (props) {
                 <p>{product.description}</p>
                 <p>{product.price}</p>
             </div>
+            {user && <div className = "mx-3 mb-3">
+                    <button className =" btn btn-secondary me-3" onClick = {()=> handleEdit(product)}>Edit</button>
+                    <button className = "btn btn-danger">Delete</button>
+            </div>}
         </div>
     );
 }

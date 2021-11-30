@@ -5,11 +5,12 @@ import Menu from './components/Menu';
 import Product from "./components/Product";
 import NewProduct from "./components/NewProduct";
 import Navigation from "./components/Navigation";
+import EditProduct from "./components/EditProduct";
 
 function App() {
+
   const [products, setProducts] = useState([]);
   const [productClicked, setProductClicked]= useState(null);
-
 
   useEffect(() => {
     axios.get("http://localhost:5000")
@@ -28,13 +29,26 @@ function onCreatedProduct(product){
   setProducts(newProducts);
 }
 
+function onUpdatedProduct(product){
+  console.log("Updated product: ", product);
+  const newProducts = [...products];
+  const index = newProducts.findIndex(item => item._id === product._id);
+
+  newProducts[index] = product;
+  setProducts(newProducts);
+}
+
+function editProduct(product){
+  setProductClicked(product);
+}
 
   return (
     <Router>
       <Navigation/>
       <Switch>
-        <Route exact path = "/" render = {() => <Menu products ={products} clickProduct= {viewProduct}/>} />
-        <Route  path = "/create-product" render = {() => <NewProduct onCreatedProduct = {onCreatedProduct}/>} />        
+        <Route exact path = "/" render = {() => <Menu products ={products} clickProduct= {viewProduct} editProduct = {editProduct}/>} />
+        <Route  path = "/create-product" render = {() => <NewProduct onCreatedProduct = {onCreatedProduct}/>} /> 
+        <Route  path = "/edit-product/:id" render = {() => <EditProduct onUpdatedProduct = {onUpdatedProduct} product={productClicked}/>} />        
         <Route  path = "/product/:id" render = {() => <Product product={productClicked}/>} />
       </Switch>
     </Router>
