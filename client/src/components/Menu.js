@@ -5,6 +5,8 @@ import ProductListItem from './ProductListItem';
 function Menu(props) {
     const {products, clickProduct, editProduct ,deleteProduct, user} = props;
 
+    
+
     return (       
         products.map(product => (
             <div className =" card m-3" key = {product._id}>

@@ -24,7 +24,7 @@ function ProductListItem (props) {
             <div className = "m-3" onClick = {() => handleClick(product)}>
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
-                <p>{product.price}</p>
+                <p className ="fw-bold">${product.price}</p>
             </div>
             {user && <div className = "mx-3 mb-3">
                     <button className =" btn btn-secondary me-3" onClick = {()=> handleEdit(product)}>Edit</button>
