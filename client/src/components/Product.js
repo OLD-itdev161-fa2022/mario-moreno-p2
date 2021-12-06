@@ -7,7 +7,7 @@ function Product (props) {
                 <div className = "card-single">
                         <h3>{product.name}</h3>
                         <p>{product.description}</p>
-                        <p className ="fw-bold">${product.price}</p>
+                        <p className ="fw-bold">{`$${product.price}`}</p>
                 </div>
         )
 }
