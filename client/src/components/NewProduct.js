@@ -27,7 +27,7 @@ function NewProduct({onCreatedProduct}) {
 
     const create = async () => {
         
-        if(errors){
+        if(errors && !name && !description && !price){
             console.log("Name, Description and Price are required");
         }else{
             const NewProduct = {
